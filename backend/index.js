@@ -2,10 +2,11 @@
 const mongoose = require ('mongoose');
 const express = require ('express');
 const cors = require ('cors');
+require('dotenv').config();
 
-//MongoDB connection Url with access details...Possibly create .env file and move connection string 
-const CONNECTION_URL = 'mongodb+srv://dbuser:dbuser@cluster0.ijyop.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+//MongoDB connection Url with .env file link for security
+const URL = process.env.CONNECTION_URL;
+mongoose.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 const db = mongoose.connection
 
 //if there is an error connecting to the database log an error
