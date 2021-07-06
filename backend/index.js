@@ -23,7 +23,7 @@ db.once('open', () => {
 const app = express()
 
 //specifies port for express server to run on 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8000
 
 //allows middleware to parse json 
 app.use(cors());

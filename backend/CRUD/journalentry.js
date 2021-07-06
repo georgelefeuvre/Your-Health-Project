@@ -1,5 +1,6 @@
 //declaration of variables and requirements
 const router = require('express').Router();
+//mongoose model
 let Journalentry = require('../schemas/journalentry.model');
 
 //Create entry
