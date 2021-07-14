@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import axios from "axios";
+
 
 export default class CreateEntry extends Component {
     //constructor called before component is mounted
@@ -47,6 +49,9 @@ export default class CreateEntry extends Component {
             }
 
             console.log(createentry)
+
+            axios.post('http://localhost:8000/journalentries/add', createentry)
+                .then(res => console.log(res.data));
         }
     
     
