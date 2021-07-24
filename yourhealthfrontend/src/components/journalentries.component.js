@@ -2,55 +2,58 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-//component within journalentries.component to create table for entries to be displayed in 
-const JournalEntry = props => {
+const JournalEntry = (props) => (
     <tr>
-        <td>{props.journalentry.date}</td>
-        <td>{props.journalentry.time}</td>
-        <td>{props.journalentry.entry}</td>
-        <td>
-            <Link to={"/edit/"+props.journalentry._id}>Edit</Link> | <a href="#" onClick={() => { props.deleteJournalEntry(props.journalentry._id) }}>delete</a>
-        </td>
+      <td>{props.journalentry.date}</td>
+      <td>{props.journalentry.time}</td>
+      <td>{props.journalentry.entry}</td>
+      <td>
+        <Link to={"/edit/" + props.journalentry._id}>Edit</Link> |
+        <a
+          href="/"
+          onClick={() => {
+            props.deleteJournalEntry(props.journalentry._id);
+          }}
+        >
+          Delete
+        </a>
+      </td>
     </tr>
-}
+  );
+  
 
-export default class JournalEntries extends Component {
+  export default class JournalEntriesList extends Component {
+    // This is the constructor that shall store our data retrieved from the database
     constructor(props) {
-        super(props);
-
-        this.deleteJournalEntry = this.deleteJournalEntry.bind(this);
-        this.state = {journalentry: []};
+      super(props);
+      this.deleteRecord = this.deleteJournalEntry.bind(this);
+      this.state = { journalentries: [] };
     }
 
     componentDidMount() {
-        axios.get('https://localhost:8000/journalentries')
-        .then(res => {
-            this.setState({ journalentry: res.data})
+        axios
+        .get('http://localhost:8000/journalentries/')
+        .then(response => { 
+            this.setState({ journalentries: response.data });
         })
-        .catch((err) => {
-            console.log(err);
+        .catch((error) => {
+            console.log(error);
         })
     }
 
-    //method to delete journal entries by MongoDB ID and reset the state of the journal entries component
     deleteJournalEntry(id) {
         axios.delete('http://localhost:8000/journalentries/'+id)
         .then(res => console.log(res.data));
-        
         this.setState({
-            journalentry: this.state.journalentry.filter(el => el._id !== id)
+            journalentries: this.state.journalentries.filter(el => el._id !== id)
         })
     }
 
-    //returns Journalentry component to table
-    JournalEntries() {
-        return this.state.journalentry.map(currentjournalentry => {
-            return <JournalEntry 
-            journalentry={currentjournalentry} 
-            deleteJournalEntry={this.deleteJournalEntry} 
-            key={currentjournalentry._id}/>;
-        })
-    }
+    journalentrieslist() {
+        return this.state.journalentries.map(currentjournalentry => {
+        return <JournalEntry journalentry={currentjournalentry} deleteJournalEntry={this.deleteJournalEntry} key={currentjournalentry._id}/>;
+    })
+}
 
     render() {
         return (
@@ -58,17 +61,18 @@ export default class JournalEntries extends Component {
                 <h2>Your Journal Entries</h2>
                 <table>
                     <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Entry</th>
-                    </tr>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Entry</th>
+                            <th>Options</th>
+                        </tr>
                     </thead>
-                    <tbody>{ this.JournalEntries() }</tbody>
+                    <tbody>
+                        { this.journalentrieslist() }
+                    </tbody>
                 </table>
             </div>
         )
     }
 }
-
-
