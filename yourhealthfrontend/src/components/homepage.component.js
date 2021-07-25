@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+//renders main page JSX code 
 export default class HomePage extends Component {
     render() {
         return (

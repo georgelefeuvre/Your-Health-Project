@@ -1,15 +1,20 @@
+//imports react components from react and axios for http requests to node server
 import React, { Component } from "react";
 import axios from "axios";
 
+//exports EditJournalEntry component for use
 export default class EditJournalEntry extends Component {
-     constructor(props) {
+    //required for react components  
+    constructor(props) {
         super(props);
 
+        //Sets the state of the
         this.onChangeDate = this.onChangeDate.bind(this);
         this.onChangeTime = this.onChangeTime.bind(this);
         this.onChangeEntry = this.onChangeEntry.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
+        //to set current state of the mongodb data
         this.state = {
             date: '',
             time: '',
@@ -17,6 +22,7 @@ export default class EditJournalEntry extends Component {
         }
     }
 
+    //
     componentDidMount() {
         axios.get('http://localhost:8000/journalentries/'+this.props.match.params.id)
             .then(response => {
