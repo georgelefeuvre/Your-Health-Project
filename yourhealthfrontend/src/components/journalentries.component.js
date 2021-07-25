@@ -9,22 +9,13 @@ const JournalEntry = (props) => (
       <td>{props.journalentry.entry}</td>
       <td>
         <Link to={"/edit/" + props.journalentry._id}>Edit</Link> |
-        <a
-          href="/"
-          onClick={() => {
-            props.deleteJournalEntry(props.journalentry._id);
-          }}
-        >
-          Delete
-        </a>
+        <a href="/" onClick={() => {props.deleteJournalEntry(props.journalentry._id);}}>Delete</a>
       </td>
     </tr>
   );
-  
 
   export default class JournalEntriesList extends Component {
-    // This is the constructor that shall store our data retrieved from the database
-    constructor(props) {
+     constructor(props) {
       super(props);
       this.deleteRecord = this.deleteJournalEntry.bind(this);
       this.state = { journalentries: [] };
@@ -51,7 +42,9 @@ const JournalEntry = (props) => (
 
     journalentrieslist() {
         return this.state.journalentries.map(currentjournalentry => {
-        return <JournalEntry journalentry={currentjournalentry} deleteJournalEntry={this.deleteJournalEntry} key={currentjournalentry._id}/>;
+        return <JournalEntry journalentry={currentjournalentry} 
+        deleteJournalEntry={this.deleteJournalEntry} 
+        key={currentjournalentry._id}/>;
     })
 }
 

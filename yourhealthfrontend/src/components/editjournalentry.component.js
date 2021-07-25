@@ -3,17 +3,14 @@ import axios from "axios";
 
 
 export default class EditJournalEntry extends Component {
-    //constructor called before component is mounted
-    constructor(props) {
+     constructor(props) {
         super(props);
-
 
         this.onChangeDate = this.onChangeDate.bind(this);
         this.onChangeTime = this.onChangeTime.bind(this);
         this.onChangeEntry = this.onChangeEntry.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
-        //.state = react variable 
         this.state = {
             date: '',
             time: '',
@@ -66,7 +63,7 @@ export default class EditJournalEntry extends Component {
 
         axios.post('http://localhost:8000/journalentries/update/' + this.props.match.params.id, createentry)
             .then(res => console.log(res.data));
-            window.location = '/';
+            window.location = '/View';
     }
 
 

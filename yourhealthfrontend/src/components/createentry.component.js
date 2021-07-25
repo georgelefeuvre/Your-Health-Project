@@ -52,6 +52,7 @@ export default class CreateEntry extends Component {
 
             axios.post('http://localhost:8000/journalentries/add', createentry)
                 .then(res => console.log(res.data));
+                window.location = '/View';
         }
     
     
