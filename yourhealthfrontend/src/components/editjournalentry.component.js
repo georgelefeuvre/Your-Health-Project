@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-
 export default class EditJournalEntry extends Component {
      constructor(props) {
         super(props);
@@ -65,7 +64,6 @@ export default class EditJournalEntry extends Component {
             .then(res => console.log(res.data));
             window.location = '/View';
     }
-
 
     render() {
         return (

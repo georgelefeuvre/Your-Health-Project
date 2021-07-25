@@ -9,7 +9,7 @@ const JournalEntry = (props) => (
       <td>{props.journalentry.entry}</td>
       <td>
         <Link to={"/edit/" + props.journalentry._id}>Edit</Link> |
-        <a href="/" onClick={() => {props.deleteJournalEntry(props.journalentry._id);}}>Delete</a>
+        <a href="/View" onClick={() => {props.deleteJournalEntry(props.journalentry._id);}}>Delete</a>
       </td>
     </tr>
   );

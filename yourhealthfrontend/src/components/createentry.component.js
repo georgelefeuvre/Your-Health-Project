@@ -1,20 +1,16 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-
 export default class CreateEntry extends Component {
-    //constructor called before component is mounted
     constructor(props) {
         super(props);
-
         
         this.onChangeDate = this.onChangeDate.bind(this);
         this.onChangeTime = this.onChangeTime.bind(this);
         this.onChangeEntry = this.onChangeEntry.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
-        //.state = react variable 
-        this.state = {
+         this.state = {
             date: '',
             time: '',
             entry: ''
@@ -54,7 +50,6 @@ export default class CreateEntry extends Component {
                 .then(res => console.log(res.data));
                 window.location = '/View';
         }
-    
     
     render() {
         return (
