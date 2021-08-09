@@ -1,6 +1,7 @@
 //imports react components from react and axios for http requests to node server
 import React, { Component } from "react";
 import axios from "axios";
+import { Container } from 'react-bootstrap'
 
 //exports EditJournalEntry component for use
 export default class EditJournalEntry extends Component {
@@ -68,28 +69,36 @@ export default class EditJournalEntry extends Component {
 
         axios.post('http://localhost:8000/journalentries/update/' + this.props.match.params.id, createentry)
             .then(res => console.log(res.data));
+            alert("Entry edit successfull");
             window.location = '/View';
     }
 
     render() {
         return (
+            <Container>
+                <br></br>
             <div>
-                <h1>Edit Journal Entry</h1>
-                <form onSubmit={this.onSubmit}>
-                    <div><label>Date: </label>
-                        <input type="text" required value={this.state.date} onChange={this.onChangeDate} />
+                <h3>Edit Journal Entry</h3>
+                <form onSubmit={this.onSubmit}>{/*when form is submitted call onSubmit function */}
+                    <div className="form-group">
+                    <label>Date: </label>
+                        <input type="text" className="form-control" required value={this.state.date} onChange={this.onChangeDate}/> 
                     </div>
-                    <div><label>Time: </label>
-                        <input type="text" required value={this.state.time} onChange={this.onChangeTime} />
+                    <div className="form-group">
+                    <label>Time: </label>
+                        <input type="text" className="form-control" required value={this.state.time} onChange={this.onChangeTime}/> 
                     </div>
-                    <div><label>Entry: </label>
-                        <input type="text" required value={this.state.entry} onChange={this.onChangeEntry} />
+                    <div className="form-group">
+                    <label>Entry: </label>
+                        <input type="text" className="form-control" required value={this.state.entry} onChange={this.onChangeEntry}/>
                     </div>
-                    <div>
-                        <input type="submit" value="Edit Your Entry" />
-                    </div>
+                    <br></br>
+                    <div className="form-group">
+                        <input className="btn btn-secondary" type="submit" value="Edit Entry"/>
+                </div>
                 </form>
             </div>
+            </Container>
         )
     }
 }

@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Container } from "react-bootstrap";
 
 //
 const JournalEntry = (props) => (
@@ -10,8 +11,8 @@ const JournalEntry = (props) => (
       <td>{props.journalentry.time}</td>
       <td>{props.journalentry.entry}</td>
       <td>
-        <Link to={"/edit/" + props.journalentry._id}>Edit</Link> |
-        <a href="/View" onClick={() => {props.deleteJournalEntry(props.journalentry._id);}}>Delete</a>
+        <Link className="btn btn-secondary"style={{textDecoration: 'none'}}to={"/edit/" + props.journalentry._id}>Edit </Link>
+        <a href="/View" className="btn btn-secondary" style={{textDecoration: 'none', margin: '4px'}} onClick={() => {alert("Entry deleted successfully!");props.deleteJournalEntry(props.journalentry._id);}}>Delete</a>
       </td>
     </tr>
   );
@@ -59,10 +60,12 @@ const JournalEntry = (props) => (
     //renders the form for data to be displayed in
     render() {
         return (
+            <Container>
+                <br></br>
             <div>
-                <h2>Your Journal Entries</h2>
-                <table>
-                    <thead>
+                <h3>Your Journal Entries</h3>
+                <table className="table">
+                    <thead className="thead-dark">
                         <tr>
                             <th>Date</th>
                             <th>Time</th>
@@ -75,6 +78,7 @@ const JournalEntry = (props) => (
                     </tbody>
                 </table>
             </div>
+            </Container>
         )
     }
 }
