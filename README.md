@@ -15,5 +15,6 @@ User guide:
 7.	If project cannot be run, ensure all file paths are specified correctly as downloading the application can require these to be written out again. 
 
 
-A .ENV file has been excluded from this GitHub repository. Due to this being an academic project however, the variable listed within will be stated here so the project can be downloaded and then ran successfully. “CONNECTION_URL=mongodb+srv://dbuser:dbuser@cluster0.ijyop.mongodb.net/myFirstDatabase?retryWrites=true&w=majority”
+A .ENV file has been excluded from this GitHub repository. Due to this being an academic project however, the variable listed within will be stated here so the project can be downloaded and then ran successfully. 
+“CONNECTION_URL=mongodb+srv://dbuser:dbuser@cluster0.ijyop.mongodb.net/myFirstDatabase?retryWrites=true&w=majority”
 Ensure this variable is called properly within the index.js file or MongoDB atlas cannot be accessed. 
